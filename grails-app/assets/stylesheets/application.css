@@ -1,0 +1,98 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS file within this directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the top of the
+* compiled file, but it's generally better to create a new file per style scope.
+*
+*= require bootstrap
+*= require font-awesome
+*= require grails
+*= require main
+*= require mobile
+*= require_self
+*/
+
+html,body {height:100%; padding:0; margin:0;}
+
+.columnasPrincipales {
+    height:calc(100% - 6.6em)
+}
+.columnaResultado {
+    height:calc(100% - 1em);
+    overflow-y: auto;
+}
+
+.bootstrap-tagsinput {
+    width: 100%;
+}
+
+
+.colorAzul{
+    color: #337ab7;
+}
+
+.colorGrisFondo {
+    background-color: #f5f5f5;
+}
+
+.list-group {
+    margin-bottom: 10px;
+}
+
+.list-group-item {
+    border: 0;
+    margin-bottom: 10px;
+    cursor: pointer;
+    /*height: 150px;*/
+}
+
+.list-group-item:hover h4{
+    color: #337ab7;
+}
+
+.list-group-item .thumbnail {
+    margin-bottom: 0;
+}
+.list-group-item .col-md-4 {
+    padding-left: 0;
+}
+
+
+
+/*starts*/
+.star-rating {
+    line-height:32px;
+    font-size:1.25em;
+    cursor: pointer;
+    color: #FFB300;
+
+}
+
+.img-comentario {
+    padding-left: 0;
+    padding-right: 0;
+
+}
+
+.cuerpo-comentario {
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.panel-body-comentario {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.row-comentario{
+    padding-top: 10px;
+}
+
+.boxsizingBorder {
+    resize: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

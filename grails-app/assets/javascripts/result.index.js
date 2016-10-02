@@ -1,3 +1,11 @@
+function Comentario(data) {
+    var self = this;
+    self.Nombre =data.paciente.nombre;
+    self.Texto =data.texto;
+    self.ImagenUrl = data.paciente.imagenUrl;
+    self.Fecha = data.fecha;
+}
+
 function Medico(data, currentMedico) {
     var self = this;
     self.Id = data.id;
@@ -6,10 +14,27 @@ function Medico(data, currentMedico) {
     self.Votos = data.votos;
     self.ImagenUrl = data.imagenUrl;
     self.Tags = data.tags;
+    self.Comentarios = ko.observableArray();
     self.showModal = function(vm){
+        $.getJSON('listComentarios',{ id: self.Id},function(data){
+            self.Comentarios.removeAll();
+            jQuery.each(data, function(index, item) {
+                self.Comentarios.push(new Comentario(item));
+            });
+        });
         currentMedico(vm);
         $('#myModal').modal('show');
     };
+
+    self.MensajeNuevo = ko.observable('');
+    self.agregarComentario = function (){
+        var nuevoComentario = new Comentario({texto: self.MensajeNuevo(),fecha: 'hora nueva', paciente:{ nombre: 'ale'} });
+        self.Comentarios.push(nuevoComentario);
+        self.MensajeNuevo('');
+        $.getJSON('guardarComentario',{ nuevoComentario : nuevoComentario},function(data){
+        });
+    };
+
 }
 
 function AppViewModel() {
@@ -54,7 +79,7 @@ function createMap(pos){
 
 function error(err) {
     console.warn('ERROR(' + err.code + '): ' + err.message);
-};
+}
 
 function initMap() {
     var options = {

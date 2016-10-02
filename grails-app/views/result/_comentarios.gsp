@@ -7,49 +7,33 @@
     <asset:link rel="icon" href="favicon-hospital-o.ico" type="image/x-ico" />
 </head>
 <body>
-
+<div style="overflow-y: scroll; height: 300px">
     <!-- Comentarios-->
-    <div class="row cuerpo-comentario">
-        <div class="col-md-2 img-comentario">
-            <img data-bind="attr:{src: ImagenUrl}" alt="..."  class="img-thumbnail">
-        </div>
-        <div class="col-md-10">
-            <div class="row row-comentario">
-                <p><strong>Nombre</strong></p>
+    <div data-bind="foreach: Comentarios">
+        <div class="row cuerpo-comentario">
+            <div class="col-md-2 img-comentario">
+                <img data-bind="attr:{src: ImagenUrl}" alt="..."  class="img-thumbnail">
             </div>
-            <div class="row">
-
-                aa datos aaaaaaaaaaaaaa
+            <div class="col-md-10">
+                <div class="row row-comentario">
+                    <strong data-bind="text: Nombre"></strong>&nbsp;&nbsp;<small data-bind="text: Fecha">Secondary text</small>
+                </div>
+                <div class="row" data-bind="text: Texto">
+                </div>
             </div>
         </div>
+        <hr>
     </div>
-    <hr>
-    <!-- Comentarios-->
-    <div class="row cuerpo-comentario">
-        <div class="col-md-2 img-comentario">
-            <img data-bind="attr:{src: ImagenUrl}" alt="..."  class="img-thumbnail">
-        </div>
-        <div class="col-md-10">
-            <div class="row row-comentario">
-                <p><strong>Nombre</strong></p>
-            </div>
-            <div class="row">
-
-                aa datos aaaaaaaaaaaaaa
-            </div>
-        </div>
-    </div>
-    <hr>
     <!-- Nuevo comenario-->
     <div class="row cuerpo-comentario">
             <div class="row">
                 <p><strong>Dejar comentario</strong></p>
             </div>
             <div class="row">
-                <textarea placeholder="Comentario:"  class="form-control boxsizingBorder" rows="3"></textarea>
-                <button type="button" class="btn btn-primary">Publicar comentario</button>
+                <textarea placeholder="Comentario:"  class="form-control boxsizingBorder" rows="3" data-bind="value: MensajeNuevo"></textarea>
+                <button type="button" class="btn btn-primary" data-bind="click: agregarComentario">Publicar comentario</button>
             </div>
     </div>
-
+</div>
 </body>
 </html>

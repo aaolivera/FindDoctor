@@ -19,14 +19,23 @@ class ResultController {
 
     def listComentarios(){
         println params
-        a = new Paciente(
+        def a = new Paciente(
                 nombre:'pepe',
-                imagenUrl:'123'
+                imagenUrl:'http://orig04.deviantart.net/92ae/f/2009/230/4/1/spongebob_9_150x150_png_by_somemilk.png'
         );
-        b = new Paciente(
+        def b = new Paciente(
                 nombre:'pepa',
-                imagenUrl:'456'
+                imagenUrl:'http://orig04.deviantart.net/92ae/f/2009/230/4/1/spongebob_9_150x150_png_by_somemilk.png'
+
         );
-        [comentarios:  [new Comentario(texto:'Hola', paciente: a), new Comentario(texto:'Hola2', paciente: b), new Comentario(texto:'Hola3', paciente: a)] as JSON]
+        def comentarios = [new Comentario(texto:'Hola', paciente: a, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time), new Comentario(texto:'Hola2', paciente: b, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time), new Comentario(texto:'Hola3', paciente: a, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time)]
+        JSON.use('deep'){
+        render comentarios as JSON
+        }
+    }
+
+    def guardarComentario(){
+        println params
+        render true
     }
 }

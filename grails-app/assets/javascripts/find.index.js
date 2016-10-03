@@ -3,12 +3,11 @@ function Filtro(data, array) {
     self.descripcion = data.descripcion;
 
     self.cargarHijos = function() {
-        if(self.filtrosAsociados != null){
+        if(self.filtrosAsociados != null && self.filtrosAsociados.length > 0){
             array([]);
             ko.utils.arrayPushAll(array, self.filtrosAsociados);
         }else{
-            $("#myForm").append('<input type="hidden" name="filter" value="'+ self.descripcion + '" />');
-            $("#myForm").submit();
+            $("#myForm").append('<input type="hidden" name="filter" value="'+ self.descripcion + '" />').submit();
         }
     };
 

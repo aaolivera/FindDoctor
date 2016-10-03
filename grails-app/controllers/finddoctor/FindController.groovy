@@ -1,12 +1,14 @@
 package finddoctor
 import grails.converters.*
+import grails.plugin.springsecurity.annotation.Secured
 
 
 class FindController {
-
+    @Secured("permitAll")
     def index() {
-        def a = new Filtro(descripcion:'a', filtrosAsociados: [ new Filtro(descripcion:'b', filtrosAsociados: [ new Filtro(descripcion:'G'), new Filtro(descripcion:'H'), new Filtro(descripcion:'z')]), new Filtro(descripcion:'c')])
-        def b = new Filtro(descripcion:'D', filtrosAsociados: [ new Filtro(descripcion:'E'), new Filtro(descripcion:'F')])
-        ['filterTree': [a, b] as JSON]
+        def filtros = Filtro.getAll();
+        JSON.use('deep'){
+            ['filterTree': filtros.findAll( { x -> filtros.findAll({ y -> y.filtrosAsociados.containsAll(x)}).size() == 0 } )  as JSON]
+        }
     }
 }

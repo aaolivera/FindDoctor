@@ -1,6 +1,6 @@
 function Comentario(data) {
     var self = this;
-    self.Nombre =data.paciente.nombre;
+    self.Nombre =data.paciente.username;
     self.Texto =data.texto;
     self.ImagenUrl = data.paciente.imagenUrl;
     self.Fecha = data.fecha;
@@ -9,7 +9,7 @@ function Comentario(data) {
 function Medico(data, currentMedico) {
     var self = this;
     self.Id = data.id;
-    self.Nombre = data.nombre;
+    self.Nombre = data.username;
     self.Estrellas = data.estrellas;
     self.Votos = data.votos;
     self.ImagenUrl = data.imagenUrl;
@@ -28,7 +28,7 @@ function Medico(data, currentMedico) {
 
     self.MensajeNuevo = ko.observable('');
     self.agregarComentario = function (){
-        var nuevoComentario = new Comentario({texto: self.MensajeNuevo(),fecha: 'hora nueva', paciente:{ nombre: 'ale'} });
+        var nuevoComentario = new Comentario({texto: self.MensajeNuevo(),fecha: 'hora nueva', paciente:{ username: 'ale'} });
         self.Comentarios.push(nuevoComentario);
         self.MensajeNuevo('');
         $.getJSON('guardarComentario',{ nuevoComentario : nuevoComentario},function(data){

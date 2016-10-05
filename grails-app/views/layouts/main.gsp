@@ -59,13 +59,14 @@
                             <li><a href="#">Tag Libraries: ${grailsApplication.tagLibClasses.size()}</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installed Plugins <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-                                <li><a href="#">${plugin.name} - ${plugin.version}</a></li>
-                            </g:each>
-                        </ul>
+                    <li>
+                        <sec:ifLoggedIn>
+                            <g:link controller='login' action='logout'>Logout</g:link>
+                        </sec:ifLoggedIn>
+                        <sec:ifNotLoggedIn>
+                            <g:link controller='login'>Login</g:link>
+                        </sec:ifNotLoggedIn>
+
                     </li>
                 </ul>
             </div>

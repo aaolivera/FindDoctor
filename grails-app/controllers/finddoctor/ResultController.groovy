@@ -20,7 +20,7 @@ class ResultController {
         }
     }
 
-
+    @Secured("ROLE_PACIENTE")
     def guardarComentario(){
         println params
         render true

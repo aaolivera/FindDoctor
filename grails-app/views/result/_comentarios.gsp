@@ -24,8 +24,10 @@
         </div>
         <hr>
     </div>
-    <!-- Nuevo comenario-->
-    <div class="row cuerpo-comentario">
+
+    <sec:ifLoggedIn>
+        <!-- Nuevo comenario-->
+        <div class="row cuerpo-comentario">
             <div class="row">
                 <p><strong>Dejar comentario</strong></p>
             </div>
@@ -33,7 +35,16 @@
                 <textarea placeholder="Comentario:"  class="form-control boxsizingBorder" rows="3" data-bind="value: MensajeNuevo"></textarea>
                 <button type="button" class="btn btn-primary" data-bind="click: agregarComentario">Publicar comentario</button>
             </div>
-    </div>
+        </div>
+    </sec:ifLoggedIn>
+    <sec:ifNotLoggedIn>
+        <div class="text-center">
+            <g:link controller='login'>Login</g:link>
+        </div>
+    </sec:ifNotLoggedIn>
+
+
+
 </div>
 </body>
 </html>

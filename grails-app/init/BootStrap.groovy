@@ -43,11 +43,10 @@ class BootStrap {
         new Comentario(texto:'Hola', paciente: john, medico: mrhaki2, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time).save()
 
         //seguridad
-        SecAppRole royalty = new SecAppRole(authority: 'ROLE_ROYALTY').save()
-        SecAppRole common = new SecAppRole(authority: 'ROLE_COMMON').save()
-        SecUsuarioSecAppRole.create(admin, royalty)
-        SecUsuarioSecAppRole.create(admin, common)
-        SecUsuarioSecAppRole.create(john, common)
+        SecAppRole paciente = new SecAppRole(authority: 'ROLE_PACIENTE').save()
+        SecAppRole medico = new SecAppRole(authority: 'ROLE_MEDICO').save()
+        SecUsuarioSecAppRole.create(admin, paciente)
+        SecUsuarioSecAppRole.create(mrhaki, medico)
     }
     def destroy = {
     }

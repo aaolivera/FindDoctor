@@ -32,39 +32,27 @@
             </div>
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Application Status <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Environment: ${grails.util.Environment.current.name}</a></li>
-                            <li><a href="#">App profile: ${grailsApplication.config.grails?.profile}</a></li>
-                            <li><a href="#">App version:
-                                <g:meta name="info.app.version"/></a>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Grails version:
-                                <g:meta name="info.app.grailsVersion"/></a>
-                            </li>
-                            <li><a href="#">Groovy version: ${GroovySystem.getVersion()}</a></li>
-                            <li><a href="#">JVM version: ${System.getProperty('java.version')}</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artefacts <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Controllers: ${grailsApplication.controllerClasses.size()}</a></li>
-                            <li><a href="#">Domains: ${grailsApplication.domainClasses.size()}</a></li>
-                            <li><a href="#">Services: ${grailsApplication.serviceClasses.size()}</a></li>
-                            <li><a href="#">Tag Libraries: ${grailsApplication.tagLibClasses.size()}</a></li>
-                        </ul>
-                    </li>
                     <li>
                         <sec:ifLoggedIn>
-                            <g:link controller='login' action='logout'>Logout</g:link>
+                            <g:link controller='logout'>Logout</g:link>
                         </sec:ifLoggedIn>
                         <sec:ifNotLoggedIn>
-                            <g:link controller='login'>Login</g:link>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1" role="button" aria-haspopup="true" aria-expanded="false">
+                                Login
+                                <b class="caret"></b>
+                            </a>
+                            <div class="dropdown-menu">
+                                <form style="margin: 0px" class="loginform" accept-charset="UTF-8" action="/login/authenticate" method="post">
+                                    <fieldset class='textbox' style="padding:10px; padding: 0;margin-bottom: 1em">
+                                        <input style="margin-top: 8px" class="limpiarError" name="username" id="username" type="text" placeholder="Username" />
+                                        <input style="margin-top: 8px" name="password" id="password" type="password" placeholder="Passsword" />
+
+
+                                        <input style="margin-top: 8px" class="btn btn-primary" name="commit" type="submit" value="Log In" />
+                                        <p style="margin-top: 8px; margin-bottom: 0" class="alert alert-warning loginError hide" role="alert"></p>
+                                    </fieldset>
+                                </form>
+                            </div>
                         </sec:ifNotLoggedIn>
 
                     </li>

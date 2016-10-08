@@ -9,3 +9,29 @@
 //= require knockout-3.4.0
 //= require bootstrap
 //= require_self
+
+$(document).ready(function() {
+    $(".loginform").submit(function(e) {
+        $.ajax({
+            type: "POST",
+            url: "/login/authenticate",
+            data: $(".loginform").serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+                if(data.error != null){
+                    $(".loginError").removeClass('hide');
+                    $(".loginError").html(data.error);
+                }else{
+                    window.location.reload(true);
+                }
+            }
+        });
+
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+    });
+
+    $(".limpiarError").keydown(function() {
+        $(".loginError").addClass('hide');
+    });
+
+});

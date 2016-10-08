@@ -5,6 +5,7 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'finddoctor.SecUsu
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'finddoctor.SecUsuarioSecAppRole'
 grails.plugin.springsecurity.authority.className = 'finddoctor.SecAppRole'
 grails.gorm.failOnError=true
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],

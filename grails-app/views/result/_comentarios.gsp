@@ -27,7 +27,7 @@
 
     <sec:ifLoggedIn>
         <!-- Nuevo comenario-->
-        <div class="row cuerpo-comentario">
+        <div class="row cuerpo-comentario" style="margin-right: 15px">
             <div class="row">
                 <p><strong>Dejar comentario</strong></p>
             </div>
@@ -38,9 +38,10 @@
         </div>
     </sec:ifLoggedIn>
     <sec:ifNotLoggedIn>
-        <div class="text-center">
-            <g:link controller='login'>Login</g:link>
+        <div class="row" style="margin-right: 15px; margin-top: 15px;">
+            <div class="alert alert-warning" role="alert">Debe estar logueado para escribir nuevos comentarios</div>
         </div>
+
     </sec:ifNotLoggedIn>
 
 

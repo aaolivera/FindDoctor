@@ -16,7 +16,7 @@ class ResultController {
         println params
 
         JSON.use('deep'){
-        render Comentario.getAll() as JSON
+        render Comentario.withCriteria {medico {eq('id', params.id) }} as JSON
         }
     }
 

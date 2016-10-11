@@ -6,7 +6,7 @@ function Comentario(data) {
     self.Fecha = data.fecha;
 }
 
-function Medico(data, currentMedico) {
+function Medico(data, currentMedico, currentUsuario) {
     var self = this;
     self.Id = data.id;
     self.Nombre = data.username;
@@ -28,10 +28,11 @@ function Medico(data, currentMedico) {
 
     self.MensajeNuevo = ko.observable('');
     self.agregarComentario = function (){
-        var nuevoComentario = new Comentario({texto: self.MensajeNuevo(),fecha: 'hora nueva', paciente:{ username: 'ale'} });
+        var nuevoTexto = self.MensajeNuevo();
+        var nuevoComentario = new Comentario({texto: nuevoTexto,fecha: 'hora nueva', paciente:currentUsuario });
         self.Comentarios.push(nuevoComentario);
         self.MensajeNuevo('');
-        $.getJSON('guardarComentario',{ nuevoComentario : nuevoComentario},function(data){
+        $.getJSON('guardarComentario',{ nuevoComentario : nuevoTexto, medicoId : self.Id},function(data){
         });
     };
 
@@ -42,13 +43,13 @@ function AppViewModel() {
 
     self.filtros = ko.observableArray();
     self.resultados = ko.observableArray();
-
+    self.currentUsuario = currentUsuario != '' ? JSON.parse(currentUsuario) : '';
     self.currentMedico = ko.observable(null);
 
     var data = JSON.parse(resultado);
     self.resultados.removeAll();
     jQuery.each(data, function(index, item) {
-        self.resultados.push(new Medico(item, self.currentMedico));
+        self.resultados.push(new Medico(item, self.currentMedico,self.currentUsuario));
     });
 }
 

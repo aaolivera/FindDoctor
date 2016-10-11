@@ -11,6 +11,7 @@
             <script type="text/javascript">
                 <g:applyCodec encodeAs="none">
                 var resultado = '${resultado}';
+                var currentUsuario = '${currentUsuario}';
                 </g:applyCodec>
             </script>
 

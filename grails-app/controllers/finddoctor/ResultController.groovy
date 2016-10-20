@@ -5,10 +5,8 @@ import grails.plugin.springsecurity.annotation.Secured
 class ResultController {
 
     @Secured("permitAll")
-    def index() {
-        println params
-
-        [resultado:  Medico.getAll() as JSON, currentUsuario: springSecurityService.currentUser as JSON]
+    def index(String filter) {
+        [resultado:  Medico.withCriteria {filtrosAsociados {eq('descripcion', filter) }} as JSON, currentUsuario: springSecurityService.currentUser as JSON]
     }
 
     @Secured("permitAll")

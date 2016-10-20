@@ -8,5 +8,5 @@ class Medico extends Usuario {
     String direccion
     String geolocalizacion
     String paginaWeb
-    static hasMany = [comentarios:Comentario]
+    static hasMany = [comentarios:Comentario, filtrosAsociados:Filtro]
 }

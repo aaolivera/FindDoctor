@@ -27,6 +27,8 @@ class BootStrap {
                 votos: 12
         ).save()
 
+        mrhaki.addToFiltrosAsociados(c).save()
+        mrhaki2.addToFiltrosAsociados(h).save()
         //usuarios
         Paciente admin = new Paciente(username:'admin', password:'secret', enabled:true,telefono: '12',email: '23',
                 imagenUrl:'http://orig04.deviantart.net/92ae/f/2009/230/4/1/spongebob_9_150x150_png_by_somemilk.png'

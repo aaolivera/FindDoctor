@@ -13,6 +13,11 @@
     <g:layoutHead/>
 </head>
 <body>
+    <asset:javascript src="jquery-2.2.0.min.js"/>
+    <asset:javascript src="knockout-3.4.0.js"/>
+    <asset:javascript src="bootstrap.js"/>
+    <asset:javascript src="bootstrap-datepicker.js"/>
+    <asset:javascript src="bootstrap-datepickeres.js"/>
     <asset:javascript src="application.js"/>
 
     <div class="navbar navbar-default navbar-static-top" role="navigation">

@@ -10,8 +10,8 @@
             <asset:javascript src="result.index.js"/>
             <script type="text/javascript">
                 <g:applyCodec encodeAs="none">
-                var resultado = '${resultado}';
-                var currentUsuario = '${currentUsuario}';
+                    var resultado = '${resultado}';
+                    var currentUsuario = '${currentUsuario}';
                 </g:applyCodec>
             </script>
 

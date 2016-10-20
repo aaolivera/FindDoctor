@@ -24,9 +24,16 @@ function Medico(data, currentMedico, currentUsuario) {
         });
         currentMedico(vm);
         $('#myModal').modal('show');
+        $('#datepicker').datepicker({
+            startDate: "tomorrow",
+            maxViewMode: 0,
+            language: "es",
+            daysOfWeekDisabled: "0,6",
+            daysOfWeekHighlighted: "1,2,3,4,5"
+        })
     };
+    currentMedico(self);
 
-    self.MensajeNuevo = ko.observable('');
     self.agregarComentario = function (){
         var nuevoTexto = self.MensajeNuevo();
         var nuevoComentario = new Comentario({texto: nuevoTexto,fecha: 'hora nueva', paciente:currentUsuario });

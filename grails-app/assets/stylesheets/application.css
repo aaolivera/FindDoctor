@@ -8,6 +8,7 @@
 * compiled file, but it's generally better to create a new file per style scope.
 *
 *= require bootstrap
+*= require bootstrap-datepicker3
 *= require font-awesome
 *= require grails
 *= require main
@@ -107,4 +108,13 @@ html,body {height:100%; padding:0; margin:0;}
 .navbar-default .navbar-nav > .open > a:focus {
     color: #ffffff;
     background-color: #2e6da4;
+}
+
+.datepicker th:hover {
+    background: #efefef;
+}
+
+.datepicker tr:hover {
+    background: 0;
+    cursor:pointer;
 }

@@ -18,6 +18,7 @@
     <asset:javascript src="bootstrap.js"/>
     <asset:javascript src="bootstrap-datepicker.js"/>
     <asset:javascript src="bootstrap-datepickeres.js"/>
+    <asset:javascript src="clockpicker.js"/>
     <asset:javascript src="application.js"/>
 
     <div class="navbar navbar-default navbar-static-top" role="navigation">

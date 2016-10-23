@@ -6,6 +6,13 @@ function Comentario(data) {
     self.Fecha = data.fecha;
 }
 
+function Turno(data) {
+    var self = this;
+    self.Id = data.id;
+    self.FechaHora = data.fechaHora;
+    self.Estado = data.estado;
+}
+
 function Medico(data, currentMedico, currentUsuario) {
     var self = this;
     self.Id = data.id;
@@ -15,22 +22,47 @@ function Medico(data, currentMedico, currentUsuario) {
     self.ImagenUrl = data.imagenUrl;
     self.Tags = data.tags;
     self.Comentarios = ko.observableArray();
+    self.MensajeNuevo = ko.observableArray();
+    self.Turnos = ko.observableArray();
     self.showModal = function(vm){
-        $.getJSON('listComentarios',{ id: self.Id},function(data){
+        $.getJSON('listarComentarios',{ medicoId: self.Id},function(data){
             self.Comentarios.removeAll();
             jQuery.each(data, function(index, item) {
                 self.Comentarios.push(new Comentario(item));
             });
         });
+        $.getJSON('listarTurnos',{ medicoId: self.Id},function(data){
+            self.Turnos.removeAll();
+            jQuery.each(data, function(index, item) {
+                self.Turnos.push(new Turno(item));
+            });
+        });
+
         currentMedico(vm);
         $('#myModal').modal('show');
+
+        var clock = $('.clockpicker').clockpicker({
+            placement: 'top',
+            align: 'left',
+            autoclose: 'True',
+            enabledhour: [10,11,12,13,14,15,16,17,18,19],
+            enabledmin: [0,20,40]
+        });
+
+
         $('#datepicker').datepicker({
+            inline: true,
+            sideBySide: true,
             startDate: "tomorrow",
-            maxViewMode: 0,
+            maxViewMode: 1,
             language: "es",
+            autoclose: true,
             daysOfWeekDisabled: "0,6",
-            daysOfWeekHighlighted: "1,2,3,4,5"
-        })
+            daysOfWeekHighlighted: "1,2,3,4,5",
+        }).on('hide', function(e) {
+            clock.clockpicker('show');
+        });
+
     };
     currentMedico(self);
 
@@ -39,10 +71,14 @@ function Medico(data, currentMedico, currentUsuario) {
         var nuevoComentario = new Comentario({texto: nuevoTexto,fecha: 'hora nueva', paciente:currentUsuario });
         self.Comentarios.push(nuevoComentario);
         self.MensajeNuevo('');
-        $.getJSON('guardarComentario',{ nuevoComentario : nuevoTexto, medicoId : self.Id},function(data){
-        });
+        $.getJSON('guardarComentario',{ nuevoComentario : nuevoTexto, medicoId : self.Id});
     };
 
+    self.crearTurno = function (){
+        var nuevoTurno = new Turno({paciente:currentUsuario, fechaHora: "bla" });
+        self.Turnos.push(nuevoTurno);
+        $.getJSON('crearTurno',{ fechaHora : "bla", medicoId : self.Id});
+    };
 }
 
 function AppViewModel() {

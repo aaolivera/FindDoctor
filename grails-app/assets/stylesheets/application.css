@@ -9,6 +9,7 @@
 *
 *= require bootstrap
 *= require bootstrap-datepicker3
+*= require clockpicker
 *= require font-awesome
 *= require grails
 *= require main
@@ -86,6 +87,7 @@ html,body {height:100%; padding:0; margin:0;}
 .panel-body-comentario {
     padding-top: 0px;
     padding-bottom: 0px;
+    padding-right: 0px;
 }
 
 .row-comentario{

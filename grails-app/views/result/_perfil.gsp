@@ -52,27 +52,8 @@
                                 </h4>
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body">
-
-                                    <div style="overflow:hidden;">
-
-                                        <div class="form-inline">
-                                            <div class="form-group">
-                                                <label for="datepicker">Dia</label>
-                                                <input type="text" class="form-control input-sm" id="datepicker">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail2">Turno</label>
-                                                <input type="email" class="form-control input-sm" id="exampleInputEmail2">
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-default">Aceptar</button>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+                                <div class="panel-body panel-body-comentario">
+                                    <g:render template="/result/turnos" />
                                 </div>
                             </div>
                         </div>

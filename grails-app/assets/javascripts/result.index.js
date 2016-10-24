@@ -10,7 +10,7 @@ function Turno(data) {
     var self = this;
     self.Id = data.id;
     self.FechaHora = data.fechaHora;
-    self.Estado = data.estado;
+    self.Estado = data.estado.name;
 }
 
 function Medico(data, currentMedico, currentUsuario) {
@@ -22,8 +22,12 @@ function Medico(data, currentMedico, currentUsuario) {
     self.ImagenUrl = data.imagenUrl;
     self.Tags = data.tags;
     self.Comentarios = ko.observableArray();
-    self.MensajeNuevo = ko.observableArray();
     self.Turnos = ko.observableArray();
+
+    self.MensajeNuevo = ko.observableArray();
+    self.Fecha = ko.observableArray();
+    self.Hora = ko.observableArray();
+
     self.showModal = function(vm){
         $.getJSON('listarComentarios',{ medicoId: self.Id},function(data){
             self.Comentarios.removeAll();
@@ -75,9 +79,9 @@ function Medico(data, currentMedico, currentUsuario) {
     };
 
     self.crearTurno = function (){
-        var nuevoTurno = new Turno({paciente:currentUsuario, fechaHora: "bla" });
+        var nuevoTurno = new Turno({paciente:currentUsuario, fechaHora: self.Fecha() + " " + self.Hora(), estado: { name :'Pendiente'} });
         self.Turnos.push(nuevoTurno);
-        $.getJSON('crearTurno',{ fechaHora : "bla", medicoId : self.Id});
+        $.getJSON('crearTurno',{ fechaHora : self.Fecha() + " " + self.Hora(), medicoId : self.Id});
     };
 }
 

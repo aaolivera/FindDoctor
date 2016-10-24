@@ -37,10 +37,13 @@ class ResultController {
     }
 
     @Secured("ROLE_PACIENTE")
-    def crearTurno(long medicoId,String fecha){
+    def crearTurno(long medicoId,String fechaHora){
+        println params
         def medico = Medico.get(medicoId)
         def pacienteActual = springSecurityService.currentUser
-        new Turno(fechaHora:fecha, paciente: pacienteActual, medico: medico, estado: Estado.Pendiente).save()
+        def newdate = new Date().parse("d/M/yyyy H:m", fechaHora)
+
+        new Turno(fechaHora:newdate, paciente: pacienteActual, medico: medico, estado: Estado.Pendiente).save()
         render true
     }
 

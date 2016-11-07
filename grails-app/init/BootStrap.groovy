@@ -43,7 +43,7 @@ class BootStrap {
         //comentarios
         new Comentario(texto:'Hola', paciente: jane, medico: mrhaki, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time).save()
         new Comentario(texto:'Hola', paciente: jane, medico: mrhaki, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time).save()
-        new Comentario(texto:'Hola', paciente: jane, medico: mrhaki2, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time).save()
+        new Comentario(texto:'Hola', paciente: john, medico: mrhaki2, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time).save()
         new Comentario(texto:'Hola', paciente: john, medico: mrhaki2, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time).save()
 
         //seguridad

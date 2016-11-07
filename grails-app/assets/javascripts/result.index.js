@@ -62,8 +62,8 @@ function Medico(data, currentMedico, currentUsuario) {
             language: "es",
             autoclose: true,
             daysOfWeekDisabled: "0,6",
-            daysOfWeekHighlighted: "1,2,3,4,5",
-        }).on('hide', function(e) {
+            daysOfWeekHighlighted: "1,2,3,4,5"
+        }).on('hide', function() {
             clock.clockpicker('show');
         });
 
@@ -79,14 +79,24 @@ function Medico(data, currentMedico, currentUsuario) {
     };
 
     self.crearTurno = function (){
-        var nuevoTurno = new Turno({paciente:currentUsuario, fechaHora: self.Fecha() + " " + self.Hora(), estado: { name :'Pendiente'} });
-        self.Turnos.push(nuevoTurno);
-        $.getJSON('crearTurno',{ fechaHora : self.Fecha() + " " + self.Hora(), medicoId : self.Id});
+        BloquearPantalla('Procesando');
+        $.getJSON('crearTurno',{ fechaHora : self.Fecha() + " " + self.Hora(), medicoId : self.Id})
+            .complete(function (data) {
+                if(data.responseText == 'true'){
+                    var nuevoTurno = new Turno({paciente:currentUsuario, fechaHora: self.Fecha() + " " + self.Hora(), estado: { name :'Pendiente'} });
+                    self.Turnos.push(nuevoTurno);
+                }else{
+                    MostrarAlertaError(data.responseText);
+                }
+                $.unblockUI();
+            }
+        );
     };
 }
 
 function AppViewModel() {
     var self = this;
+
 
     self.filtros = ko.observableArray();
     self.resultados = ko.observableArray();

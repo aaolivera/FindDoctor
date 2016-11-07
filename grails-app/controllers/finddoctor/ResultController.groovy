@@ -3,54 +3,47 @@ import grails.converters.*
 import grails.plugin.springsecurity.annotation.Secured
 
 class ResultController {
+    def springSecurityService
+    def servicioRepositorioService
 
     @Secured("permitAll")
     def index(String filter) {
-        [resultado:  Medico.withCriteria {filtrosAsociados {eq('descripcion', filter) }} as JSON, currentUsuario: springSecurityService.currentUser as JSON]
+        def usuario = springSecurityService.currentUser;
+        def medicos = servicioRepositorioService.filtrarMedicos(filter);
+        [resultado: medicos  as JSON, currentUsuario: usuario as JSON]
     }
 
     @Secured("permitAll")
     def listarComentarios(long medicoId){
-        println params
-        def a = Comentario.where {x -> x.medico.id == medicoId}
+        def comentarios = servicioRepositorioService.listarComentariosPorMedicoId(medicoId);
         JSON.use('deep'){
-            render a.list() as JSON
+            render comentarios as JSON
         }
     }
-    def springSecurityService
+
     @Secured("ROLE_PACIENTE")
     def guardarComentario(long medicoId,String nuevoComentario){
-        def medico = Medico.get(medicoId)
         def pacienteActual = springSecurityService.currentUser
-        def fechaActual = Calendar.getInstance(TimeZone.getTimeZone('GMT')).time
-        new Comentario(texto:nuevoComentario, paciente: pacienteActual, medico: medico, fecha: fechaActual).save()
-        render true
+        servicioRepositorioService.guardarComentario(medicoId, pacienteActual, nuevoComentario)
     }
 
     @Secured("ROLE_PACIENTE")
     def listarTurnos(long medicoId){
         def pacienteActual = springSecurityService.currentUser
-        def a = Turno.where {x -> x.medico.id == medicoId && x.paciente.id == pacienteActual.id}
-        JSON.use('deep'){
-            render a.list() as JSON
-        }
+        def turnos = servicioRepositorioService.listarTurnosPorMedicoIdyPaciente(medicoId, pacienteActual)
+        render turnos as JSON
     }
 
     @Secured("ROLE_PACIENTE")
     def crearTurno(long medicoId,String fechaHora){
-        println params
-        def medico = Medico.get(medicoId)
         def pacienteActual = springSecurityService.currentUser
         def newdate = new Date().parse("d/M/yyyy H:m", fechaHora)
-
-        new Turno(fechaHora:newdate, paciente: pacienteActual, medico: medico, estado: Estado.Pendiente).save()
-        render true
+        render servicioRepositorioService.guardarTurno(medicoId, pacienteActual, newdate)
     }
 
     @Secured("ROLE_PACIENTE")
     def cancelarTurno(long turnoId){
-        def turno = Turno.get(turnoId)
-        turno.estado = Estado.Cancelado
-        render true
+        def pacienteActual = springSecurityService.currentUser
+        render servicioRepositorioService.cancelarTurno(turnoId, pacienteActual) as JSON
     }
 }

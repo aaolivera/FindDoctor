@@ -19,6 +19,7 @@
     <asset:javascript src="bootstrap-datepicker.js"/>
     <asset:javascript src="bootstrap-datepickeres.js"/>
     <asset:javascript src="clockpicker.js"/>
+    <asset:javascript src="jquery.blockUI.js"/>
     <asset:javascript src="application.js"/>
 
     <div class="navbar navbar-default navbar-static-top" role="navigation">
@@ -38,9 +39,14 @@
             </div>
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
                 <ul class="nav navbar-nav navbar-right">
+                    <sec:ifLoggedIn>
+                    <li>
+                        <g:link controller='turn'>Turnos</g:link>
+                    </li>
+                    </sec:ifLoggedIn>
                     <li>
                         <sec:ifLoggedIn>
-                            <g:link controller='logout'>Logout</g:link>
+                             <g:link controller='logout'>Logout</g:link>
                         </sec:ifLoggedIn>
                         <sec:ifNotLoggedIn>
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1" role="button" aria-haspopup="true" aria-expanded="false">

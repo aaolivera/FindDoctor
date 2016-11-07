@@ -32,3 +32,21 @@ $(document).ready(function() {
     });
 
 });
+
+function BloquearPantalla(mensaje) {
+    $.blockUI({
+        blockMsgClass: 'blocuiBox',
+        message: '<h5>' + mensaje + '</h5>'
+    });
+}
+
+function MostrarAlertaError(mensaje){
+    // set the message to display: none to fade it in later.
+    var message = $('<div class="alert alert-danger error-message" style="display: none;">');
+    // a close button
+    var close = $('<button type="button" class="close" data-dismiss="alert">&times</button>');
+    message.append(close); // adding the close button to the message
+    message.append('<strong>Error: </strong>' + mensaje); // adding the error response to the message
+    // add the message element to the body, fadein, wait 3secs, fadeout
+    message.appendTo($('body')).fadeIn(300).delay(3000).fadeOut(1000);
+}

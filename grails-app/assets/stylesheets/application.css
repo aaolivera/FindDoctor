@@ -120,3 +120,26 @@ html,body {height:100%; padding:0; margin:0;}
     background: 0;
     cursor:pointer;
 }
+
+.error-message {
+    position: fixed;
+    top: 36%;
+    left: 50%;
+    margin-left: -20%;
+    width: 40%;
+    z-index: 9997;
+}
+
+.blocuiBox
+{
+    border:none !important;
+    width: 20% !important;
+    left: 40% !important;
+    padding: 15px!important;
+    z-index: 9999!important;
+}
+
+.blockOverlay
+{
+    z-index: 9998!important;
+}

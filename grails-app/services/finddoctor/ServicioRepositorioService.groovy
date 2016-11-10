@@ -23,6 +23,10 @@ class servicioRepositorioService {
         Turno.withCriteria {eq('paciente', usuario)}
     }
 
+    def listarTurnosPorMedico(Medico usuario){
+        Turno.withCriteria {eq('medico', usuario)}
+    }
+
     def listarComentariosPorMedicoId(long id){
         Comentario.withCriteria {medico {eq('id', id) }}
     }

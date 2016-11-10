@@ -368,7 +368,7 @@ input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
 }
 
 /* TABLES */
-
+/*
 table {
     border-top: 1px solid #DFDFDF;
     border-collapse: collapse;
@@ -450,7 +450,7 @@ th:hover, tr:hover {
     background: #337ab7;
     color: white;
 }
-
+*/
 /* PAGINATION */
 
 .pagination {

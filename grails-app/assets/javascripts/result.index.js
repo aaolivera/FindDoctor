@@ -79,18 +79,22 @@ function Medico(data, currentMedico, currentUsuario) {
     };
 
     self.crearTurno = function (){
-        BloquearPantalla('Procesando');
-        $.getJSON('crearTurno',{ fechaHora : self.Fecha() + " " + self.Hora(), medicoId : self.Id})
-            .complete(function (data) {
-                if(data.responseText == 'true'){
-                    var nuevoTurno = new Turno({paciente:currentUsuario, fechaHora: self.Fecha() + " " + self.Hora(), estado: { name :'Pendiente'} });
-                    self.Turnos.push(nuevoTurno);
-                }else{
-                    MostrarAlertaError(data.responseText);
-                }
-                $.unblockUI();
-            }
-        );
+        if(self.Fecha() == '' && self.Hora() == ''){
+            MostrarAlertaError('Campo obligatorio requerido');
+        }else{
+            BloquearPantalla('Procesando');
+            $.getJSON('crearTurno',{ fechaHora : self.Fecha() + " " + self.Hora(), medicoId : self.Id})
+                .complete(function (data) {
+                        if(data.responseText == 'true'){
+                            var nuevoTurno = new Turno({paciente:currentUsuario, fechaHora: self.Fecha() + " " + self.Hora(), estado: { name :'Pendiente'} });
+                            self.Turnos.push(nuevoTurno);
+                        }else{
+                            MostrarAlertaError(data.responseText);
+                        }
+                        $.unblockUI();
+                    }
+                );
+        }
     };
 }
 

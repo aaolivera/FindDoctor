@@ -51,6 +51,8 @@ class BootStrap {
         SecAppRole medico = new SecAppRole(authority: 'ROLE_MEDICO').save()
         SecUsuarioSecAppRole.create(admin, paciente)
         SecUsuarioSecAppRole.create(mrhaki, medico)
+        SecUsuarioSecAppRole.create(mrhaki2, medico)
+
     }
     def destroy = {
     }

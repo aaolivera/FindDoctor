@@ -21,7 +21,7 @@ class ResultController {
         }
     }
 
-    @Secured("ROLE_PACIENTE")
+    @Secured(["ROLE_PACIENTE", 'ROLE_MEDICO'])
     def guardarComentario(long medicoId,String nuevoComentario){
         def pacienteActual = springSecurityService.currentUser
         servicioRepositorioService.guardarComentario(medicoId, pacienteActual, nuevoComentario)
@@ -41,7 +41,7 @@ class ResultController {
         render servicioRepositorioService.guardarTurno(medicoId, pacienteActual, newdate)
     }
 
-    @Secured("ROLE_PACIENTE")
+    @Secured(["ROLE_PACIENTE", 'ROLE_MEDICO'])
     def cancelarTurno(long turnoId){
         def pacienteActual = springSecurityService.currentUser
         render servicioRepositorioService.cancelarTurno(turnoId, pacienteActual) as JSON

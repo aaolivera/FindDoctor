@@ -1,6 +1,6 @@
 package finddoctor
 
-enum Estado {
+enum State {
     Pendiente,
     Aceptado,
     Rechazado,

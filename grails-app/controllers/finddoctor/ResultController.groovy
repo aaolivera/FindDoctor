@@ -4,46 +4,41 @@ import grails.plugin.springsecurity.annotation.Secured
 
 class ResultController {
     def springSecurityService
-    def servicioRepositorioService
+    def repositoryService
 
     @Secured("permitAll")
     def index(String filter) {
-        def usuario = springSecurityService.currentUser;
-        def medicos = servicioRepositorioService.filtrarMedicos(filter);
-        [resultado: medicos  as JSON, currentUsuario: usuario as JSON]
+        def user = springSecurityService.currentUser;
+        def doctors = repositoryService.listDoctorByFilter(filter);
+        [result: doctors  as JSON, currentUser: user as JSON]
     }
 
     @Secured("permitAll")
-    def listarComentarios(long medicoId){
-        def comentarios = servicioRepositorioService.listarComentariosPorMedicoId(medicoId);
+    def listComment(long doctorId){
+        def comment = repositoryService.listCommentsByDoctorId(doctorId);
         JSON.use('deep'){
-            render comentarios as JSON
+            render comment as JSON
         }
     }
 
-    @Secured(["ROLE_PACIENTE", 'ROLE_MEDICO'])
-    def guardarComentario(long medicoId,String nuevoComentario){
-        def pacienteActual = springSecurityService.currentUser
-        servicioRepositorioService.guardarComentario(medicoId, pacienteActual, nuevoComentario)
+    @Secured(["ROLE_PATIENT", 'ROLE_DOCTOR'])
+    def saveComment(long doctorId,String newComment){
+        def user = springSecurityService.currentUser
+        repositoryService.saveComment(doctorId, user, newComment)
     }
 
-    @Secured("ROLE_PACIENTE")
-    def listarTurnos(long medicoId){
-        def pacienteActual = springSecurityService.currentUser
-        def turnos = servicioRepositorioService.listarTurnosPorMedicoIdyPaciente(medicoId, pacienteActual)
-        render turnos as JSON
+    @Secured("ROLE_PATIENT")
+    def listTurns(long doctorId){
+        def user = springSecurityService.currentUser
+        def turns = repositoryService.listTurnByDoctorAndPatient(doctorId, user)
+        render turns as JSON
     }
 
-    @Secured("ROLE_PACIENTE")
-    def crearTurno(long medicoId,String fechaHora){
-        def pacienteActual = springSecurityService.currentUser
-        def newdate = new Date().parse("d/M/yyyy H:m", fechaHora)
-        render servicioRepositorioService.guardarTurno(medicoId, pacienteActual, newdate)
+    @Secured("ROLE_PATIENT")
+    def createTurn(long doctorId, String datetime){
+        def user = springSecurityService.currentUser
+        def newdate = new Date().parse("d/M/yyyy H:m", datetime)
+        render repositoryService.saveTurn(doctorId, user, newdate)
     }
 
-    @Secured(["ROLE_PACIENTE", 'ROLE_MEDICO'])
-    def cancelarTurno(long turnoId){
-        def pacienteActual = springSecurityService.currentUser
-        render servicioRepositorioService.cancelarTurno(turnoId, pacienteActual) as JSON
-    }
 }

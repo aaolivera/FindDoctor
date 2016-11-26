@@ -2,8 +2,12 @@ function Turno(data) {
     var self = this;
     self.Id = data.id;
     self.FechaHora = data.fechaHora;
-    self.Estado = data.estado.name;
+    self.Estado = ko.observable(data.estado.name);
     self.Medico = data.medico.username
+    self.Rechazar = function () {
+        self.Estado('Cancelado');
+        $.getJSON('cancelTurn',{ turnId: self.Id});
+    };
 }
 
 function AppViewModel() {

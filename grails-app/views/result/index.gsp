@@ -10,8 +10,8 @@
             <asset:javascript src="result.index.js"/>
             <script type="text/javascript">
                 <g:applyCodec encodeAs="none">
-                    var resultado = '${resultado}';
-                    var currentUsuario = '${currentUsuario}';
+                    var resultado = '${result}';
+                    var currentUsuario = '${currentUser}';
                 </g:applyCodec>
             </script>
 
@@ -19,7 +19,7 @@
 
             <div class="col-md-3 colorGrisFondo columnasPrincipales" style="padding-top: 15px;">
                 <div class="row columnaResultado">
-                    <g:render template="/result/resultados" />
+                    <g:render template="/result/results" />
                 </div>
             </div>
             <div class="col-md-9 columnasPrincipales" style="padding-left:0"  id="map">

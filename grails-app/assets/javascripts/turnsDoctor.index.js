@@ -6,9 +6,11 @@ function Turno(data) {
     self.Paciente = data.paciente.username;
     self.Aceptar = function () {
         self.Estado('Aceptado');
+        $.getJSON('acceptTurn',{ turnId: self.Id});
     };
     self.Rechazar = function () {
         self.Estado('Cancelado');
+        $.getJSON('cancelTurn',{ turnId: self.Id});
     };
 }
 

@@ -4,12 +4,12 @@ import grails.plugin.springsecurity.annotation.Secured
 
 
 class FindController {
-    def servicioRepositorioService
+    def repositoryService
 
     @Secured("permitAll")
     def index() {
         JSON.use('deep'){
-            ['filterTree': servicioRepositorioService.obtenerFiltrosIniciales()  as JSON]
+            ['filterTree': repositoryService.getInitialFilters()  as JSON]
         }
     }
 }

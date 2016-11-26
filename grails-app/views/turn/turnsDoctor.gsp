@@ -7,10 +7,10 @@
     <asset:link rel="icon" href="favicon-hospital-o.ico" type="image/x-ico" />
 </head>
 <body>
-            <asset:javascript src="turnMedico.index.js"/>
+            <asset:javascript src="turnsDoctor.index.js"/>
             <script type="text/javascript">
                 <g:applyCodec encodeAs="none">
-                    var turnos = '${turnos}';
+                    var turnos = '${turns}';
                 </g:applyCodec>
             </script>
 

@@ -29,13 +29,13 @@ function Medico(data, currentMedico, currentUsuario) {
     self.Hora = ko.observableArray();
 
     self.showModal = function(vm){
-        $.getJSON('listarComentarios',{ medicoId: self.Id},function(data){
+        $.getJSON('listComment',{ doctorId: self.Id},function(data){
             self.Comentarios.removeAll();
             jQuery.each(data, function(index, item) {
                 self.Comentarios.push(new Comentario(item));
             });
         });
-        $.getJSON('listarTurnos',{ medicoId: self.Id},function(data){
+        $.getJSON('listTurns',{ doctorId: self.Id},function(data){
             self.Turnos.removeAll();
             jQuery.each(data, function(index, item) {
                 self.Turnos.push(new Turno(item));
@@ -75,7 +75,7 @@ function Medico(data, currentMedico, currentUsuario) {
         var nuevoComentario = new Comentario({texto: nuevoTexto,fecha: 'hora nueva', paciente:currentUsuario });
         self.Comentarios.push(nuevoComentario);
         self.MensajeNuevo('');
-        $.getJSON('guardarComentario',{ nuevoComentario : nuevoTexto, medicoId : self.Id});
+        $.getJSON('saveComment',{ newComment : nuevoTexto, doctorId : self.Id});
     };
 
     self.crearTurno = function (){
@@ -83,7 +83,7 @@ function Medico(data, currentMedico, currentUsuario) {
             MostrarAlertaError('Campo obligatorio requerido');
         }else{
             BloquearPantalla('Procesando');
-            $.getJSON('crearTurno',{ fechaHora : self.Fecha() + " " + self.Hora(), medicoId : self.Id})
+            $.getJSON('createTurn',{ datetime : self.Fecha() + " " + self.Hora(), doctorId : self.Id})
                 .complete(function (data) {
                         if(data.responseText == 'true'){
                             var nuevoTurno = new Turno({paciente:currentUsuario, fechaHora: self.Fecha() + " " + self.Hora(), estado: { name :'Pendiente'} });

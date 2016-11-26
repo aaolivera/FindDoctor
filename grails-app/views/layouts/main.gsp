@@ -39,14 +39,14 @@
             </div>
             <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
                 <ul class="nav navbar-nav navbar-right">
-                    <sec:ifAnyGranted roles="ROLE_PACIENTE">
+                    <sec:ifAnyGranted roles="ROLE_PATIENT">
                         <li>
-                            <g:link controller='turn' action="turnosPaciente">Turnos</g:link>
+                            <g:link controller='turn' action="turnsPatient">Turnos</g:link>
                         </li>
                     </sec:ifAnyGranted>
-                    <sec:ifAnyGranted roles="ROLE_MEDICO">
+                    <sec:ifAnyGranted roles="ROLE_DOCTOR">
                         <li>
-                            <g:link controller='turn' action="turnosMedico">Turnos</g:link>
+                            <g:link controller='turn' action="turnsDoctor">Turnos</g:link>
                         </li>
                     </sec:ifAnyGranted>
                     <li>

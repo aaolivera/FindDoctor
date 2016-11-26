@@ -25,7 +25,7 @@
         <hr>
     </div>
 
-    <sec:ifLoggedIn>
+    <sec:ifAnyGranted roles="ROLE_PATIENT">
         <!-- Nuevo comenario-->
         <div class="row cuerpo-comentario" style="margin-right: 15px">
             <div class="row">
@@ -36,7 +36,7 @@
                 <button type="button" class="btn btn-primary" data-bind="click: agregarComentario">Publicar comentario</button>
             </div>
         </div>
-    </sec:ifLoggedIn>
+    </sec:ifAnyGranted>
     <sec:ifNotLoggedIn>
         <div class="row" style="margin-right: 15px; margin-top: 15px;">
             <div class="alert alert-warning" role="alert">Debe estar logueado para escribir nuevos comentarios</div>

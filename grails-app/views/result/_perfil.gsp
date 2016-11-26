@@ -42,6 +42,7 @@
 
 
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="margin-bottom: 0">
+                        <sec:ifAnyGranted roles="ROLE_PATIENT">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
@@ -53,10 +54,11 @@
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body panel-body-comentario">
-                                    <g:render template="/result/turnos" />
+                                    <g:render template="/result/turns" />
                                 </div>
                             </div>
                         </div>
+                        </sec:ifAnyGranted>
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingTwo">
                                 <h4 class="panel-title">
@@ -69,7 +71,7 @@
 
                             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                 <div class="panel-body panel-body-comentario">
-                                    <g:render template="/result/comentarios" />
+                                    <g:render template="/result/ccomments" />
                                 </div>
                             </div>
                         </div>

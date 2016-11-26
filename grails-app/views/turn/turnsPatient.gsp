@@ -7,10 +7,10 @@
     <asset:link rel="icon" href="favicon-hospital-o.ico" type="image/x-ico" />
 </head>
 <body>
-            <asset:javascript src="turn.index.js"/>
+            <asset:javascript src="turnsPatient.index.js"/>
             <script type="text/javascript">
                 <g:applyCodec encodeAs="none">
-                    var turnos = '${turnos}';
+                    var turnos = '${turns}';
                 </g:applyCodec>
             </script>
 
@@ -33,11 +33,14 @@
                                     </tr>
                                 </thead>
                                 <tbody data-bind="foreach: turnos">
-                                    <tr class="active"  data-bind="css: { 'success': Estado == 'Aceptado', 'info': Estado == 'Pendiente', 'danger': Estado == 'Cancelado' }">
+                                    <tr class="active"  data-bind="css: { 'success': Estado() == 'Aceptado', 'info': Estado() == 'Pendiente', 'danger': Estado() == 'Cancelado' }">
                                         <th scope="row">1</th>
                                         <td data-bind="text: Medico"></td>
                                         <td data-bind="text: FechaHora"></td>
                                         <td data-bind="text: Estado"></td>
+                                        <td>
+                                            <button type="button" data-bind="visible: Estado() == 'Pendiente',click: Rechazar" class="btn btn-default btn-xs">Cancelar</button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

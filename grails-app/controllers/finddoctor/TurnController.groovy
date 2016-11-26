@@ -5,25 +5,36 @@ import grails.plugin.springsecurity.annotation.Secured
 
 class TurnController {
     def springSecurityService
-    def servicioRepositorioService
+    def repositoryService
 
-    @Secured("ROLE_PACIENTE")
-    def turnosPaciente() {
-        def pacienteActual = springSecurityService.currentUser
-        def turnos = servicioRepositorioService.listarTurnosPorPaciente(pacienteActual)
+    @Secured("ROLE_PATIENT")
+    def turnsPatient() {
+        def user = springSecurityService.currentUser
+        def turns = repositoryService.listTurnByPatient(user)
 
         JSON.use('deep'){
-            [turnos: turnos  as JSON]
+            [turns: turns  as JSON]
         }
     }
 
-    @Secured("ROLE_MEDICO")
-    def turnosMedico() {
-        def pacienteActual = springSecurityService.currentUser
-        def turnos = servicioRepositorioService.listarTurnosPorMedico(pacienteActual)
+    @Secured("ROLE_DOCTOR")
+    def turnsDoctor() {
+        def user = springSecurityService.currentUser
+        def turns = repositoryService.listTurnByDoctor(user)
 
         JSON.use('deep'){
-            [turnos: turnos  as JSON]
+            [turns: turns  as JSON]
         }
     }
+
+    @Secured(["ROLE_DOCTOR", "ROLE_PATIENT"])
+    def acceptTurn(long turnId){
+        repositoryService.acceptTurn(turnId);
+    }
+
+    @Secured(["ROLE_DOCTOR", "ROLE_PATIENT"])
+    def cancelTurn(long turnId){
+        repositoryService.cancelTurn(turnId);
+    }
+
 }

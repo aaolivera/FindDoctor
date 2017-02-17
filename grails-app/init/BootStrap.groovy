@@ -4,54 +4,70 @@ class BootStrap {
 
     def init = { servletContext ->
         //filtros
-        Filtro c = new Filtro(descripcion:'c').save()
-        Filtro z = new Filtro(descripcion:'z').save()
-        Filtro h = new Filtro(descripcion:'H')
-        Filtro b = new Filtro(descripcion:'b').save()
-        Filtro a = new Filtro(descripcion:'a').save()
-        a.addToFiltrosAsociados(b).addToFiltrosAsociados(z).addToFiltrosAsociados(c).save()
 
-        Filtro d = new Filtro(descripcion:'d').save()
-        d.addToFiltrosAsociados(h).save()
+        Filtro a = new Filtro(descripcion:'Clínica Médica').save()
+        Filtro b = new Filtro(descripcion:'Laboratorio de Análisis Clínicos').save()
+        Filtro c = new Filtro(descripcion:'Centros de Guardia').save()
+        Filtro e = new Filtro(descripcion:'Farmacias').save()
 
+//        Filtro z = new Filtro(descripcion:'Obra Social').save()
+//        Filtro h = new Filtro(descripcion:'Particular').save()
+//
+//        a.addToFiltrosAsociados(z).addToFiltrosAsociados(h).save()
+//        b.addToFiltrosAsociados(z).addToFiltrosAsociados(h).save()
+//        c.addToFiltrosAsociados(z).addToFiltrosAsociados(h).save()
+//        e.addToFiltrosAsociados(z).addToFiltrosAsociados(h).save()
+
+//        a.save()
+//        b.save()
+//        c.save()
+//        e.save()
 
         //medicos
-        Medico mrhaki = new Medico(username:'mrhaki', password:'secret', enabled:true,telefono: '12',email: '23',paginaWeb:'1',direccion:'1', geolocalizacion: '1',ciudad: '1',
-                imagenUrl:'http://orig04.deviantart.net/92ae/f/2009/230/4/1/spongebob_9_150x150_png_by_somemilk.png',
-                estrellas: 4,
+        Medico doctorJuan = new Medico(username:'Doctor Juan Perez', password:'secret', enabled:true,telefono: '011-3133-1313',email: '23',paginaWeb:'1',direccion:'1', geolocalizacion: '1',ciudad: '1',
+                imagenUrl:'http://ichef.bbci.co.uk/news/660/media/images/76055000/jpg/_76055361_482566485.jpg',
+                estrellas: 2,
                 votos: 123
         ).save()
-        Medico mrhaki2 = new Medico(username:'mrhaki2', password:'secret', enabled:true,telefono: '12',email: '23',paginaWeb:'1',direccion:'1', geolocalizacion: '1',ciudad: '1',
-               imagenUrl:'http://orig04.deviantart.net/92ae/f/2009/230/4/1/spongebob_9_150x150_png_by_somemilk.png',
-                estrellas: 2,
+        Medico doctorHouse = new Medico(username:'Doctor House', password:'secret', enabled:true,telefono: '011-3433-1111',email: '23',paginaWeb:'1',direccion:'1', geolocalizacion: '1',ciudad: '1',
+               imagenUrl:'http://www.juegosgratisinternet.com/noticias/fotos/dr-house-nueva-final.jpg',
+                estrellas: 5,
                 votos: 12
         ).save()
 
-        mrhaki.addToFiltrosAsociados(c).save()
-        mrhaki2.addToFiltrosAsociados(h).save()
+        Medico doctorDoolitle = new Medico(username:'Doctor Dolittle', password:'secret', enabled:true,telefono: '011-3433-9999',email: '23',paginaWeb:'1',direccion:'1', geolocalizacion: '1',ciudad: '1',
+                imagenUrl:'http://iv1.lisimg.com/image/1509301/474full-dr.-dolittle-2-screenshot.jpg',
+                estrellas: 5,
+                votos: 12
+        ).save()
+
+        doctorHouse.addToFiltrosAsociados(a).save()
+        doctorJuan.addToFiltrosAsociados(a).save()
+        doctorDoolitle.addToFiltrosAsociados(a).save()
+
         //usuarios
-        Paciente admin = new Paciente(username:'admin', password:'secret', enabled:true,telefono: '12',email: '23',
-                imagenUrl:'http://orig04.deviantart.net/92ae/f/2009/230/4/1/spongebob_9_150x150_png_by_somemilk.png'
+        Paciente admin = new Paciente(username:'admin', password:'secret', enabled:true,telefono: '011-4545-3422',email: '50',
+                imagenUrl:'http://www.thestar.com.my/~/media/online/2017/01/20/21/07/20170120t210657z_4_lynxmped0j1jj_rtroptp_3_usatrumpinauguration.ashx/?w=620&h=413&crop=1&hash=0088438441B9983D2C9FE1428965503C1AD8F2A4'
         ).save()
-        Paciente john = new Paciente(username:'john', password:'secret', enabled:true,telefono: '12',email: '23',
-                imagenUrl:'http://orig04.deviantart.net/92ae/f/2009/230/4/1/spongebob_9_150x150_png_by_somemilk.png'
+        Paciente homer = new Paciente(username:'Homer', password:'secret', enabled:true,telefono: '011-4514-1313',email: '40',
+                imagenUrl:'https://pbs.twimg.com/profile_images/609439993094770690/MqfzEbtj.jpg'
         ).save()
-        Paciente jane = new Paciente(username:'jane', password:'secret', enabled:true,telefono: '12',email: '23',
-                imagenUrl:'http://orig04.deviantart.net/92ae/f/2009/230/4/1/spongebob_9_150x150_png_by_somemilk.png'
+        Paciente lisa = new Paciente(username:'Lisa', password:'secret', enabled:true,telefono: '011-4514-2222',email: '20',
+                imagenUrl:'http://images.yodibujo.es/_uploads/_tiny_galerie/20130414/lisa-simpson-hija_6zs.jpg'
         ).save()
 
         //comentarios
-        new Comentario(texto:'Hola', paciente: jane, medico: mrhaki, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time).save()
-        new Comentario(texto:'Hola', paciente: jane, medico: mrhaki, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time).save()
-        new Comentario(texto:'Hola', paciente: john, medico: mrhaki2, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time).save()
-        new Comentario(texto:'Hola', paciente: john, medico: mrhaki2, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time).save()
+        new Comentario(texto:'Excelente atención, poco tiempo de espera', paciente: homer, medico: doctorJuan, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time).save()
+        new Comentario(texto:'Excelente Profesional', paciente: lisa, medico: doctorHouse, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time).save()
+        new Comentario(texto:'Lugar de espera pequeño y con mucha demora', paciente: homer, medico: doctorHouse, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time).save()
+        new Comentario(texto:'Excelente', paciente: admin, medico: doctorHouse, fecha: Calendar.getInstance(TimeZone.getTimeZone('GMT')).time).save()
 
         //seguridad
         SecAppRole paciente = new SecAppRole(authority: 'ROLE_PATIENT').save()
         SecAppRole medico = new SecAppRole(authority: 'ROLE_DOCTOR').save()
         SecUsuarioSecAppRole.create(admin, paciente)
-        SecUsuarioSecAppRole.create(mrhaki, medico)
-        SecUsuarioSecAppRole.create(mrhaki2, medico)
+        SecUsuarioSecAppRole.create(doctorJuan, medico)
+        SecUsuarioSecAppRole.create(doctorHouse, medico)
 
     }
     def destroy = {

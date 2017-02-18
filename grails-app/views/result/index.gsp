@@ -15,8 +15,6 @@
                 </g:applyCodec>
             </script>
 
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeU5QR5N0qOphQkp816JUDOqLpmxIMqSU&callback=initMap" type="text/javascript"></script>
-
             <div class="col-md-3 colorGrisFondo columnasPrincipales" style="padding-top: 15px;">
                 <div class="row columnaResultado">
                     <g:render template="/result/results" />
@@ -25,5 +23,59 @@
             <div class="col-md-9 columnasPrincipales" style="padding-left:0"  id="map">
             </div>
             <g:render template="/result/perfil" />
+<script>
+    function initMap() {
+        var buenosAires = {lat: -34.603722, lng: -58.381592}
+        var map = new google.maps.Map(document.getElementById('map'), {
+        center: buenosAires,
+        zoom: 13
+    });
+
+
+    function setCurrentPosMarker(pos){
+        var blueMarker = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+        var marker = new google.maps.Marker({
+            position: pos,
+            icon: blueMarker
+        });
+
+        // To add the marker to the map, call setMap();
+        marker.setMap(map);
+    }
+
+        var infoWindow = new google.maps.InfoWindow({map: map});
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+
+              map.setCenter(pos);
+              setCurrentPosMarker(pos);
+
+            }, function() {
+              handleLocationError(true, infoWindow, map.getCenter());
+            });
+            } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+            }
+
+        }
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+          infoWindow.setPosition(pos);
+          infoWindow.setContent(browserHasGeolocation ?
+                                'Error: The Geolocation service failed.' :
+                                'Error: Your browser doesn\'t support geolocation.');
+        }
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeU5QR5N0qOphQkp816JUDOqLpmxIMqSU&callback=initMap">
+   </script>
+</script>
 </body>
 </html>

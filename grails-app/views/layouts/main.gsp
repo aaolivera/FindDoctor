@@ -41,21 +41,32 @@
                 <ul class="nav navbar-nav navbar-right">
                     <sec:ifAnyGranted roles="ROLE_PATIENT">
                         <li>
+                            <g:link controller='perfil' action="perfilPatient">Perfil</g:link>
+                        </li>
+                        <li>
                             <g:link controller='turn' action="turnsPatient">Turnos</g:link>
                         </li>
                     </sec:ifAnyGranted>
                     <sec:ifAnyGranted roles="ROLE_DOCTOR">
                         <li>
+                            <g:link controller='perfil' action="perfilDoctor">Perfil</g:link>
+                        </li>
+                        <li>
                             <g:link controller='turn' action="turnsDoctor">Turnos</g:link>
                         </li>
                     </sec:ifAnyGranted>
-                    <li>
-                        <sec:ifLoggedIn>
-                             <g:link controller='logout'>Logout</g:link>
-                        </sec:ifLoggedIn>
-                        <sec:ifNotLoggedIn>
+                    <sec:ifLoggedIn>
+                        <li>
+                            <g:link controller='logout'>Salir</g:link>
+                        </li>
+                    </sec:ifLoggedIn>
+                    <sec:ifNotLoggedIn>
+                        <li>
+                            <g:link controller='user' action="register">Registrate ahora!</g:link>
+                        </li>
+                       <li>
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1" role="button" aria-haspopup="true" aria-expanded="false">
-                                Login
+                                Ingresar
                                 <b class="caret"></b>
                             </a>
                             <div class="dropdown-menu">
@@ -65,14 +76,13 @@
                                         <input style="margin-top: 8px" name="password" id="password" type="password" placeholder="Passsword" />
 
 
-                                        <input style="margin-top: 8px" class="btn btn-primary" name="commit" type="submit" value="Log In" />
+                                        <input style="margin-top: 8px" class="btn btn-primary" name="commit" type="submit" value="Ingresar" />
                                         <p style="margin-top: 8px; margin-bottom: 0" class="alert alert-warning loginError hide" role="alert"></p>
                                     </fieldset>
                                 </form>
                             </div>
-                        </sec:ifNotLoggedIn>
-
-                    </li>
+                       </li>
+                    </sec:ifNotLoggedIn>
                 </ul>
             </div>
         </div>

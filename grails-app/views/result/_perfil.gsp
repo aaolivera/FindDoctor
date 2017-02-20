@@ -24,15 +24,17 @@
                         </div>
                         <div class="col-md-8">
                             <address>
-                                <strong>Twitter, Inc.</strong><br>
-                                1355 Market Street, Suite 900<br>
-                                San Francisco, CA 94103<br>
-                                <abbr title="Phone">P:</abbr> (123) 456-7890
+                                <strong data-bind="text: Direccion"></strong>
+                                <br>
+                                <br>
+                                <div data-bind="text: Ciudad"></div>
+                                <br>
+                                <abbr title="Phone">P:</abbr><span data-bind="text: Telefono"></span>
                             </address>
 
                             <address>
-                                <strong>Full Name</strong><br>
-                                <a href="mailto:#">first.last@example.com</a>
+                                <strong data-bind="text: PaginaWeb"></strong><br>
+                                <a href="mailto:#" data-bind="text: Email"></a>
                             </address>
                         </div>
                     </div>
@@ -43,7 +45,7 @@
 
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="margin-bottom: 0">
                         <sec:ifAnyGranted roles="ROLE_PATIENT">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" data-bind="visible: TurnosPorHora.length > 0 && HorasLaborales.length > 0">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">

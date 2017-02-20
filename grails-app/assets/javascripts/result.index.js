@@ -20,13 +20,22 @@ function Medico(data, currentMedico, currentUsuario) {
     self.Estrellas = data.estrellas;
     self.Votos = data.votos;
     self.ImagenUrl = data.imagenUrl;
-    self.Tags = data.tags;
     self.Comentarios = ko.observableArray();
     self.Turnos = ko.observableArray();
 
     self.MensajeNuevo = ko.observableArray();
     self.Fecha = ko.observableArray();
     self.Hora = ko.observableArray();
+
+    self.Direccion = data.direccion;
+    self.Ciudad = data.ciudad;
+    self.Telefono = data.telefono;
+    self.PaginaWeb = data.paginaWeb;
+    self.Email = data.email;
+    self.Geolocalizacion = data.geolocalizacion;
+
+    self.HorasLaborales = data.horasLaborales;
+    self.TurnosPorHora = data.turnosPorHora;
 
     self.showModal = function(vm){
         $.getJSON('listComment',{ doctorId: self.Id},function(data){
@@ -49,8 +58,8 @@ function Medico(data, currentMedico, currentUsuario) {
             placement: 'top',
             align: 'left',
             autoclose: 'True',
-            enabledhour: [10,11,12,13,14,15,16,17,18,19],
-            enabledmin: [0,20,40]
+            enabledhour: self.HorasLaborales,
+            enabledmin: self.TurnosPorHora
         });
 
 

@@ -29,16 +29,20 @@ class BootStrap {
                 estrellas: 2,
                 votos: 123
         ).save()
-        Medico doctorHouse = new Medico(username:'Doctor House', password:'secret', enabled:true,telefono: '011-3433-1111',email: '23',paginaWeb:'1',direccion:'1', geolocalizacion: '1',ciudad: '1',
+        Medico doctorHouse = new Medico(username:'Doctor House', password:'secret', enabled:true,telefono: '011-3433-1111',email: '23',paginaWeb:'1',direccion:'www.house.com', geolocalizacion: '40°45°36°N 73°59°2.4°W',ciudad: 'Nueva York',
                imagenUrl:'http://www.juegosgratisinternet.com/noticias/fotos/dr-house-nueva-final.jpg',
                 estrellas: 5,
-                votos: 12
+                votos: 12,
+                horasLaborales: [10,11,12,13,14,15,16,17,18,19],
+                turnosPorHora: [0,20,40]
         ).save()
 
         Medico doctorDoolitle = new Medico(username:'Doctor Dolittle', password:'secret', enabled:true,telefono: '011-3433-9999',email: '23',paginaWeb:'1',direccion:'1', geolocalizacion: '1',ciudad: '1',
                 imagenUrl:'http://iv1.lisimg.com/image/1509301/474full-dr.-dolittle-2-screenshot.jpg',
                 estrellas: 5,
-                votos: 12
+                votos: 12,
+                horasLaborales: [16,17,18,19],
+                turnosPorHora: [0,30]
         ).save()
 
         doctorHouse.addToFiltrosAsociados(a).save()

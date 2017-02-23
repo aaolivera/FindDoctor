@@ -17,12 +17,12 @@ class BootStrap {
         h.addToFiltrosAsociados(a).addToFiltrosAsociados(b).addToFiltrosAsociados(c).addToFiltrosAsociados(d).save()
 
         //medicos
-        Medico doctorJuan = new Medico(username:'Doctor Juan Perez', password:'secret', enabled:true,telefono: '011-3133-1313',email: '23',paginaWeb:'1',direccion:'1', geolocalizacion: '1',ciudad: '1',
+        Medico doctorJuan = new Medico(username:'Doctor Juan Perez', password:'secret', enabled:true,telefono: '011-3133-1313',email: 'doctor.juan@gmail.com',paginaWeb:'-',direccion:'Humberto Primo 461', geolocalizacion: '-34.619293, -58.370106',ciudad: 'Ciudad de Buenos Aires',
                 imagenUrl:'http://ichef.bbci.co.uk/news/660/media/images/76055000/jpg/_76055361_482566485.jpg',
                 estrellas: 2,
                 votos: 123
         ).save()
-        Medico doctorHouse = new Medico(username:'Doctor House', password:'secret', enabled:true,telefono: '011-3433-1111',email: '23',paginaWeb:'1',direccion:'www.house.com', geolocalizacion: '40°45°36°N 73°59°2.4°W',ciudad: 'Nueva York',
+        Medico doctorHouse = new Medico(username:'Doctor House', password:'secret', enabled:true,telefono: '011-3433-1111',email: 'house@house.com.ar',paginaWeb:'www.house.com',direccion:'Balcarce 922', geolocalizacion: '-34.619293, -58.370106',ciudad: 'Ciudad de Buenos Aires',
                imagenUrl:'http://www.juegosgratisinternet.com/noticias/fotos/dr-house-nueva-final.jpg',
                 estrellas: 5,
                 votos: 12,

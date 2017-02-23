@@ -22,7 +22,7 @@
                     <div class="row">
                         <h4 class="list-group-item-heading" data-bind="text: Nombre"></h4>
                         <p class="list-group-item-text" style="height: 30px;" data-bind="text: Ciudad"></p>
-                        <p class="list-group-item-text" style="height: 40px;" data-bind="text: Geolocalizacion"></p>
+                        <p class="list-group-item-text" style="height: 40px;" data-bind="text: Direccion"></p>
                     </div>
                 </div>
             </div>

@@ -29,7 +29,7 @@
                                 <br>
                                 <div data-bind="text: Ciudad"></div>
                                 <br>
-                                <abbr title="Phone">P:</abbr><span data-bind="text: Telefono"></span>
+                                <abbr title="Phone">Tel: </abbr><span data-bind="text: Telefono"></span>
                             </address>
 
                             <address>

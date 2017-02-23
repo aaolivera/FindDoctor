@@ -22,7 +22,7 @@ class BootStrap {
                 estrellas: 2,
                 votos: 123
         ).save()
-        Medico doctorHouse = new Medico(username:'Doctor House', password:'secret', enabled:true,telefono: '011-3433-1111',email: 'house@house.com.ar',paginaWeb:'www.house.com',direccion:'Balcarce 922', geolocalizacion: '-34.619293, -58.370106',ciudad: 'Ciudad de Buenos Aires',
+        Medico doctorHouse = new Medico(username:'Doctor House', password:'secret', enabled:true,telefono: '011-3433-1111',email: 'house@house.com.ar',paginaWeb:'www.house.com',direccion:'Balcarce 922', geolocalizacion: '-34.619293, -58.373106',ciudad: 'Ciudad de Buenos Aires',
                imagenUrl:'http://www.juegosgratisinternet.com/noticias/fotos/dr-house-nueva-final.jpg',
                 estrellas: 5,
                 votos: 12,

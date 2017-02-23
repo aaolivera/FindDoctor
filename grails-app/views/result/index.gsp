@@ -26,22 +26,10 @@
 <script>
     function initMap() {
         var buenosAires = {lat: -34.603722, lng: -58.381592}
-        var map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('map'), {
         center: buenosAires,
         zoom: 13
     });
-
-
-    function setCurrentPosMarker(pos){
-        var blueMarker = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
-        var marker = new google.maps.Marker({
-            position: pos,
-            icon: blueMarker
-        });
-
-        // To add the marker to the map, call setMap();
-        marker.setMap(map);
-    }
 
         var infoWindow = new google.maps.InfoWindow({map: map});
 
@@ -54,7 +42,7 @@
               };
 
               map.setCenter(pos);
-              setCurrentPosMarker(pos);
+              setCurrentPosMarker(pos, 'Usted');
 
             }, function() {
               handleLocationError(true, infoWindow, map.getCenter());

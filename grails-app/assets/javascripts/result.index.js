@@ -33,6 +33,8 @@ function Medico(data, currentMedico, currentUsuario) {
     self.PaginaWeb = data.paginaWeb;
     self.Email = data.email;
     self.Geolocalizacion = data.geolocalizacion;
+    var pos = {lat: parseFloat(data.geolocalizacion.split(',')[0]), lng: parseFloat(data.geolocalizacion.split(',')[1])}
+    setCurrentPosMarker(pos,data.username);
 
     self.HorasLaborales = data.horasLaborales;
     self.TurnosPorHora = data.turnosPorHora;
@@ -81,7 +83,7 @@ function Medico(data, currentMedico, currentUsuario) {
 
     self.agregarComentario = function (){
         var nuevoTexto = self.MensajeNuevo();
-        var nuevoComentario = new Comentario({texto: nuevoTexto,fecha: 'hora nueva', paciente:currentUsuario });
+        var nuevoComentario = new Comentario({texto: nuevoTexto,fecha: new Date($.now()), paciente:currentUsuario });
         self.Comentarios.push(nuevoComentario);
         self.MensajeNuevo('');
         $.getJSON('saveComment',{ newComment : nuevoTexto, doctorId : self.Id});
@@ -126,8 +128,6 @@ function AppViewModel() {
 
 $(document).ready(function() {
     ko.applyBindings(new AppViewModel());
-    initMap();
-
 
     $(document).on('shown.bs.collapse','.collapse', function(){
         $(this).parent().find(".fa-plus").removeClass("fa-plus").addClass("fa-minus");
@@ -138,25 +138,17 @@ $(document).ready(function() {
 });
 
 
-
-var map;
-function createMap(pos){
-    var crd = pos.coords;
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: (crd.latitude != null ? crd.latitude:-34.397), lng: (crd.longitude != null ? crd.longitude:150.644)},
-        zoom: 15
+function setCurrentPosMarker(pos, nombre){
+    var blueMarker = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+    var marker = new google.maps.Marker({
+        position: pos,
+        icon: blueMarker,
+        label: {
+            fontWeight: 'bold',
+            text: nombre,
+        }
     });
-}
 
-function error(err) {
-    console.warn('ERROR(' + err.code + '): ' + err.message);
-}
-
-function initMap() {
-    var options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    };
-    navigator.geolocation.getCurrentPosition(createMap, error, options);
+    // To add the marker to the map, call setMap();
+    marker.setMap(map);
 }

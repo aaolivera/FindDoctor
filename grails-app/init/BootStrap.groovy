@@ -6,22 +6,15 @@ class BootStrap {
         //filtros
 
         Filtro a = new Filtro(descripcion:'Clínica Médica').save()
-        Filtro b = new Filtro(descripcion:'Laboratorio de Análisis Clínicos').save()
-        Filtro c = new Filtro(descripcion:'Centros de Guardia').save()
-        Filtro e = new Filtro(descripcion:'Farmacias').save()
+        Filtro b = new Filtro(descripcion:'Neurología').save()
+        Filtro c = new Filtro(descripcion:'Cardiología').save()
+        Filtro d = new Filtro(descripcion:'Dermatología').save()
 
-//        Filtro z = new Filtro(descripcion:'Obra Social').save()
-//        Filtro h = new Filtro(descripcion:'Particular').save()
-//
-//        a.addToFiltrosAsociados(z).addToFiltrosAsociados(h).save()
-//        b.addToFiltrosAsociados(z).addToFiltrosAsociados(h).save()
-//        c.addToFiltrosAsociados(z).addToFiltrosAsociados(h).save()
-//        e.addToFiltrosAsociados(z).addToFiltrosAsociados(h).save()
+        Filtro z = new Filtro(descripcion:'Obra Social').save()
+        Filtro h = new Filtro(descripcion:'Particular').save()
 
-//        a.save()
-//        b.save()
-//        c.save()
-//        e.save()
+        z.addToFiltrosAsociados(a).addToFiltrosAsociados(b).addToFiltrosAsociados(c).addToFiltrosAsociados(d).save()
+        h.addToFiltrosAsociados(a).addToFiltrosAsociados(b).addToFiltrosAsociados(c).addToFiltrosAsociados(d).save()
 
         //medicos
         Medico doctorJuan = new Medico(username:'Doctor Juan Perez', password:'secret', enabled:true,telefono: '011-3133-1313',email: '23',paginaWeb:'1',direccion:'1', geolocalizacion: '1',ciudad: '1',
@@ -37,7 +30,7 @@ class BootStrap {
                 turnosPorHora: [0,20,40]
         ).save()
 
-        Medico doctorDoolitle = new Medico(username:'Doctor Dolittle', password:'secret', enabled:true,telefono: '011-3433-9999',email: '23',paginaWeb:'1',direccion:'1', geolocalizacion: '1',ciudad: '1',
+        Medico doctorDoolitle = new Medico(username:'Doctor Dolittle', password:'secret', enabled:true,telefono: '011-3433-9999',email: 'doctor@doolitle.com',paginaWeb:'1',direccion:'Chile 355', geolocalizacion: '-34.615861, -58.371187',ciudad: 'Buenos Aires',
                 imagenUrl:'http://iv1.lisimg.com/image/1509301/474full-dr.-dolittle-2-screenshot.jpg',
                 estrellas: 5,
                 votos: 12,
